@@ -1,34 +1,231 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* BHV Restaurant - Custom Styles */
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 32, 25, 0.4) 0%,
+    rgba(26, 32, 25, 0.2) 50%,
+    rgba(26, 32, 25, 0.5) 100%
+  );
+  z-index: 1;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1.5rem;
 }
 
-.App-link {
-    color: #61dafb;
+/* About Section Asymmetric Layout */
+.about-image-container {
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+.about-image-container::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid rgba(124, 144, 112, 0.3);
+  z-index: -1;
+}
+
+/* Menu Section */
+.menu-section {
+  background-color: var(--bg-secondary);
+}
+
+.pdf-placeholder {
+  background-color: var(--bg-primary);
+  border: 1px dashed rgba(124, 144, 112, 0.3);
+  border-radius: 8px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Gallery Bento Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Contact Section Map */
+.map-container {
+  filter: grayscale(100%) contrast(110%);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: filter 0.5s ease;
+}
+
+.map-container:hover {
+  filter: grayscale(50%) contrast(105%);
+}
+
+/* Language Switcher */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.lang-switch button {
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+.lang-switch button.active {
+  color: var(--sage-500);
+  font-weight: 600;
+}
+
+.lang-switch button:not(.active) {
+  color: var(--text-secondary);
+}
+
+.lang-switch button:not(.active):hover {
+  color: var(--sage-600);
+}
+
+/* Navbar transitions */
+.navbar-transparent {
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.navbar-solid {
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  background-color: rgba(251, 251, 249, 0.85);
+  border-bottom: 1px solid rgba(124, 144, 112, 0.1);
+}
+
+/* Scroll indicator bounce */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.scroll-indicator {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+/* Phone link styling */
+.phone-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  color: var(--sage-500);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.phone-link:hover {
+  color: var(--sage-600);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(251, 251, 249, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.mobile-menu-link {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.mobile-menu-link:hover {
+  color: var(--sage-500);
+}
+
+/* Shadow utilities */
+.shadow-elegant {
+  box-shadow: 0 12px 40px rgba(26, 32, 25, 0.06);
+}
+
+/* Zoom container for menu */
+.zoom-container {
+  cursor: grab;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.zoom-container:active {
+  cursor: grabbing;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--sage-900);
+  color: var(--text-inverse);
+}
+
+.footer a {
+  color: var(--sage-100);
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: white;
 }
