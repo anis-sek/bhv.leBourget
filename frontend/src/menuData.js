@@ -63,10 +63,10 @@ export const menuSections = [
     id: "pates",
     title: { fr: "Pâtes", en: "Pasta", es: "Pastas" },
     items: [
-      { name: { fr: "Escalope Normande", en: "Normandy Escalope", es: "Escalopa Normanda" }, desc: { fr: "Escalope de veau · crème fraîche · champignons · sauce Normande", en: "Veal escalope · crème fraîche · mushrooms · Normandy sauce", es: "Escalopa de ternera · crème fraîche · champiñones · salsa normanda" }, price: "14,50 €" },
-      { name: { fr: "Tagliatelles filet de poulet", en: "Chicken Tagliatelle", es: "Tagliatelle de pollo" }, desc: { fr: "Sauce Normande aux champignons", en: "Normandy mushroom sauce", es: "Salsa normanda con champiñones" }, price: "14,50 €" },
-      { name: { fr: "Tagliatelles au saumon", en: "Salmon Tagliatelle", es: "Tagliatelle de salmón" }, desc: { fr: "Tagliatelles et saumon", en: "Tagliatelle and salmon", es: "Tagliatelle y salmón" }, price: "14,50 €" },
-      { name: { fr: "Tagliatelles Carbonara", en: "Carbonara Tagliatelle", es: "Tagliatelle Carbonara" }, desc: { fr: "Lardons · jaune d'œuf · parmesan", en: "Bacon bits · egg yolk · parmesan", es: "Bacon · yema de huevo · parmesano" }, price: "15,50 €" },
+      { name: { fr: "Escalope Normande", en: "Normandy Escalope", es: "Escalopa Normanda" }, desc: { fr: "Tagliatelles · escalope de veau · crème fraîche · champignons", en: "Tagliatelle · veal escalope · crème fraîche · mushrooms", es: "Tagliatelle · escalopa de ternera · crème fraîche · champiñones" }, price: "14,50 €" },
+      { name: { fr: "Tagliatelles filet de poulet", en: "Chicken Tagliatelle", es: "Tagliatelle de pollo" }, desc: { fr: "Filet de poulet · crème fraîche · champignons", en: "Chicken fillet · crème fraîche · mushrooms", es: "Filete de pollo · crème fraîche · champiñones" }, price: "14,50 €" },
+      { name: { fr: "Tagliatelles au saumon", en: "Salmon Tagliatelle", es: "Tagliatelle de salmón" }, desc: { fr: "Saumon · crème fraîche · aneth", en: "Salmon · crème fraîche · dill", es: "Salmón · crème fraîche · eneldo" }, price: "14,50 €" },
+      { name: { fr: "Tagliatelles Carbonara", en: "Carbonara Tagliatelle", es: "Tagliatelle Carbonara" }, desc: { fr: "Lardons · crème fraîche · jaune d'œuf · parmesan", en: "Bacon bits · crème fraîche · egg yolk · parmesan", es: "Bacon · crème fraîche · yema de huevo · parmesano" }, price: "15,50 €" },
     ],
   },
   {

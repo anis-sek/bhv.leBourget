@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
-import { Phone, Menu, X, ChevronDown, MapPin, Clock, Download } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, MapPin, Clock } from "lucide-react";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
 import { galleryImages, heroImage, aboutImage } from "./galleryImages";
 import { menuSections } from "./menuData";
@@ -223,7 +223,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           data-testid="hero-title"
-          className="font-serif text-5xl sm:text-6xl lg:text-7xl text-white font-light tracking-tight mb-6"
+          className="font-serif text-5xl sm:text-6xl lg:text-7xl text-white font-semibold sm:font-light tracking-tight mb-6 drop-shadow-lg"
         >
           {RESTAURANT_INFO.name}
         </motion.h1>
@@ -233,7 +233,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           data-testid="hero-slogan"
-          className="font-serif text-xl sm:text-2xl text-white/90 italic mb-10"
+          className="font-serif text-xl sm:text-2xl text-white/90 italic mb-10 drop-shadow-md"
         >
           {t("hero.slogan")}
         </motion.p>
@@ -360,20 +360,9 @@ const MenuModal = ({ onClose }) => {
               <span className="font-serif text-2xl font-semibold text-sage-900 tracking-tight">B · H · V</span>
               <span className="menu-modal-subtitle">Hôtel Restaurant — Le Bourget</span>
             </div>
-            <div className="flex items-center gap-2">
-              <a
-                href="/carte_bhv.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="menu-pdf-btn"
-              >
-                <Download size={15} />
-                PDF
-              </a>
-              <button onClick={onClose} className="menu-modal-close" aria-label="Fermer">
-                <X size={20} />
-              </button>
-            </div>
+            <button onClick={onClose} className="menu-modal-close" aria-label="Fermer">
+              <X size={20} />
+            </button>
           </div>
 
           {/* Row 2 : language tabs */}
