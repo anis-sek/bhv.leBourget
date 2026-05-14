@@ -123,7 +123,7 @@ export const menuSections = [
   },
   {
     id: "couscous",
-    title: { fr: "Nos Couscous", en: "Our Couscous", es: "Nuestros Cuscuses" },
+    title: { fr: "Nos Couscous", en: "Our Couscous", es: "Nuestros Cuscús" },
     note: {
       fr: "Servis sauf jeudi · vendredi · samedi · dimanche",
       en: "Served Monday to Wednesday only",
@@ -131,7 +131,7 @@ export const menuSections = [
     },
     items: [
       { name: { fr: "Couscous Royal", en: "Royal Couscous", es: "Cuscús Real" }, desc: { fr: "Poulet · merguez · bœuf · brochette d'agneau", en: "Chicken · merguez · beef · lamb skewer", es: "Pollo · merguez · ternera · brocheta de cordero" }, price: "22,00 €" },
-      { name: { fr: "Couscous Mixt", en: "Mixed Couscous", es: "Cuscús Mixto" }, desc: { fr: "Poulet merguez · bœuf merguez · brochette merguez", en: "Chicken merguez · beef merguez · merguez skewer", es: "Merguez de pollo · merguez de ternera · brocheta merguez" }, price: "18,00 €" },
+      { name: { fr: "Couscous Mixte", en: "Mixed Couscous", es: "Cuscús Mixto" }, desc: { fr: "Poulet merguez · bœuf merguez · brochette merguez", en: "Chicken merguez · beef merguez · merguez skewer", es: "Merguez de pollo · merguez de ternera · brocheta merguez" }, price: "18,00 €" },
       { name: { fr: "Couscous Méchaoui", en: "Mechoui Couscous", es: "Cuscús Mechui" }, price: "20,00 €" },
       { name: { fr: "Couscous Brochettes", en: "Skewer Couscous", es: "Cuscús Brochetas" }, price: "17,00 €" },
       { name: { fr: "Couscous Bœuf", en: "Beef Couscous", es: "Cuscús de Ternera" }, price: "15,00 €" },
@@ -148,7 +148,7 @@ export const menuSections = [
       { name: { fr: "Crème brûlée", en: "Crème brûlée", es: "Crema quemada" }, price: "5,00 €" },
       { name: { fr: "Tiramisu", en: "Tiramisu", es: "Tiramisú" }, price: "6,00 €" },
       { name: { fr: "Profiteroles", en: "Profiteroles", es: "Profiteroles" }, price: "7,00 €" },
-      { name: { fr: "Fondant au chocolat", en: "Chocolate Fondant", es: "Coulant de chocolate" }, desc: { fr: "Servi avec 1 boule de glace vanille", en: "Served with 1 scoop of vanilla ice cream", es: "Servido con 1 bola de helado de vainilla" }, price: "7,00 €" },
+      { name: { fr: "Fondant au chocolat", en: "Chocolate Fondant", es: "Coulant de chocolate" }, desc: { fr: "Servi avec 1 boule de glace à la vanille", en: "Served with 1 scoop of vanilla ice cream", es: "Servido con 1 bola de helado de vainilla" }, price: "7,00 €" },
       { name: { fr: "Glaces & sorbets", en: "Ice Cream & Sorbets", es: "Helados & Sorbetes" }, desc: { fr: "Vanille · chocolat · fraise · pomme · framboise · café · citron · noisette · menthe", en: "Vanilla · chocolate · strawberry · apple · raspberry · coffee · lemon · hazelnut · mint", es: "Vainilla · chocolate · fresa · manzana · frambuesa · café · limón · avellana · menta" }, price: "" },
     ],
   },
@@ -160,7 +160,7 @@ export const menuSections = [
       { name: { fr: "Coca / Coca Zéro", en: "Coca-Cola / Coca-Cola Zero", es: "Coca-Cola / Coca-Cola Zero" }, price: "3,50 €" },
       { name: { fr: "Orangina", en: "Orangina", es: "Orangina" }, price: "3,50 €" },
       { name: { fr: "Limonade", en: "Lemonade", es: "Limonada" }, price: "3,50 €" },
-      { name: { fr: "Ice Tea", en: "Ice Tea", es: "Té helado" }, price: "3,50 €" },
+      { name: { fr: "Ice Tea", en: "Iced Tea", es: "Té helado" }, price: "3,50 €" },
       { name: { fr: "Diabolo", en: "Diabolo", es: "Diabolo" }, price: "3,50 €" },
       { name: { fr: "Oasis Tropicale", en: "Oasis Tropical", es: "Oasis Tropical" }, price: "3,50 €" },
       { name: { fr: "Jus de fruit", en: "Fruit Juice", es: "Zumo de fruta" }, price: "3,50 €" },
