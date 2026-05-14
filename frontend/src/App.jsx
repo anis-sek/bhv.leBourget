@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
-import { Phone, Menu, X, ChevronDown, MapPin, Clock, FileText } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, MapPin, Clock, Download } from "lucide-react";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
 import { galleryImages, heroImage, aboutImage } from "./galleryImages";
+import { menuSections } from "./menuData";
 import "@/App.css";
 
 // Restaurant Info
@@ -88,21 +89,19 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-6">
             {/* Language Switcher */}
             <div className="lang-switch">
-              <button
-                onClick={() => setLanguage("fr")}
-                data-testid="lang-fr"
-                className={`${language === "fr" ? "active" : ""} ${isScrolled ? "" : "!text-white/70 hover:!text-white"}`}
-              >
-                FR
-              </button>
-              <span className={isScrolled ? "text-sage-300" : "text-white/50"}>|</span>
-              <button
-                onClick={() => setLanguage("en")}
-                data-testid="lang-en"
-                className={`${language === "en" ? "active" : ""} ${isScrolled ? "" : "!text-white/70 hover:!text-white"}`}
-              >
-                EN
-              </button>
+              {["fr", "en", "es"].map((lang, i) => (
+                <>
+                  {i > 0 && <span key={`sep-${lang}`} className={isScrolled ? "text-sage-300" : "text-white/50"}>|</span>}
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    data-testid={`lang-${lang}`}
+                    className={`${language === lang ? "active" : ""} ${isScrolled ? "" : "!text-white/70 hover:!text-white"}`}
+                  >
+                    {lang.toUpperCase()}
+                  </button>
+                </>
+              ))}
             </div>
 
             {/* CTA Button */}
@@ -159,19 +158,18 @@ const Navbar = () => {
             ))}
 
             <div className="lang-switch mt-4">
-              <button
-                onClick={() => setLanguage("fr")}
-                className={language === "fr" ? "active" : ""}
-              >
-                FR
-              </button>
-              <span className="text-sage-300">|</span>
-              <button
-                onClick={() => setLanguage("en")}
-                className={language === "en" ? "active" : ""}
-              >
-                EN
-              </button>
+              {["fr", "en", "es"].map((lang, i) => (
+                <>
+                  {i > 0 && <span key={`sep-${lang}`} className="text-sage-300">|</span>}
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    className={language === lang ? "active" : ""}
+                  >
+                    {lang.toUpperCase()}
+                  </button>
+                </>
+              ))}
             </div>
 
             <a
@@ -322,46 +320,159 @@ const AboutSection = () => {
   );
 };
 
+// Menu Modal — full menu displayed like the PDF
+const MenuModal = ({ onClose }) => {
+  const { language } = useLanguage();
+  const [menuLang, setMenuLang] = useState(language);
+  const langLabels = { fr: "Français", en: "English", es: "Español" };
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [onClose]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="menu-modal-overlay"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 50 }}
+        transition={{ type: "spring", damping: 30, stiffness: 280 }}
+        className="menu-modal"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Sticky header */}
+        <div className="menu-modal-header">
+          <div className="menu-modal-brand">
+            <span className="font-serif text-2xl font-semibold text-sage-900 tracking-tight">B · H · V</span>
+            <span className="menu-modal-subtitle">Hôtel Restaurant — Le Bourget</span>
+          </div>
+
+          <div className="menu-lang-tabs">
+            {["fr", "en", "es"].map((lang) => (
+              <button
+                key={lang}
+                onClick={() => setMenuLang(lang)}
+                className={`menu-lang-tab ${menuLang === lang ? "active" : ""}`}
+              >
+                {langLabels[lang]}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <a
+              href="/carte_bhv.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="menu-pdf-btn"
+            >
+              <Download size={15} />
+              PDF
+            </a>
+            <button onClick={onClose} className="menu-modal-close" aria-label="Fermer">
+              <X size={20} />
+            </button>
+          </div>
+        </div>
+
+        {/* Full menu content */}
+        <div className="menu-modal-body">
+          {menuSections.map((section) => (
+            <div key={section.id} className="menu-full-section">
+              <div className="menu-full-section-header">
+                <h3 className="menu-full-section-title">{section.title[menuLang]}</h3>
+                <div className="menu-full-section-line" />
+              </div>
+
+              {section.note && (
+                <p className="menu-full-note">{section.note[menuLang]}</p>
+              )}
+
+              <ul className="menu-full-items">
+                {section.items.map((item, i) => (
+                  <li key={i} className="menu-full-item">
+                    <div className="menu-full-item-info">
+                      <span className="menu-full-item-name">{item.name[menuLang]}</span>
+                      {item.desc && (
+                        <span className="menu-full-item-desc">{item.desc[menuLang]}</span>
+                      )}
+                    </div>
+                    <div className="menu-full-item-dots" />
+                    <span className="menu-full-item-price">{item.price || "—"}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          <p className="menu-full-footer">
+            60 Av. de la Division Leclerc · 93350 Le Bourget · 01 70 59 49 87 · Ouvert 7j/7
+          </p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 // Menu Section
 const MenuSection = () => {
   const { t } = useLanguage();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section id="menu" data-testid="menu-section" className="menu-section py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
         >
           <span className="section-label" data-testid="menu-label">{t("menu.label")}</span>
           <h2 className="font-serif text-4xl lg:text-5xl text-sage-900 mt-4 mb-6" data-testid="menu-title">
             {t("menu.title")}
           </h2>
-          <p className="text-sage-600 max-w-2xl mx-auto" data-testid="menu-description">
+          <p className="text-sage-600 max-w-xl mx-auto mb-12" data-testid="menu-description">
             {t("menu.description")}
           </p>
         </motion.div>
 
-        {/* PDF Placeholder */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-4xl mx-auto"
+          className="menu-cover-card"
+          onClick={() => setIsModalOpen(true)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && setIsModalOpen(true)}
         >
-          <div className="pdf-placeholder" data-testid="menu-pdf-placeholder">
-            <FileText size={48} className="text-sage-400" />
-            <p className="text-sage-500 text-center">{t("menu.placeholder")}</p>
-            <p className="text-sage-400 text-sm text-center">
-              (Emplacement réservé pour le PDF de la carte)
-            </p>
+          <div className="menu-cover-inner">
+            <p className="menu-cover-label">HÔTEL RESTAURANT</p>
+            <h3 className="menu-cover-title">B · H · V</h3>
+            <div className="menu-cover-divider" />
+            <p className="menu-cover-langs">Français · English · Español</p>
+            <span className="menu-cover-cta">{t("menu.viewMenu")}</span>
           </div>
         </motion.div>
       </div>
+
+      <AnimatePresence>
+        {isModalOpen && <MenuModal onClose={() => setIsModalOpen(false)} />}
+      </AnimatePresence>
     </section>
   );
 };

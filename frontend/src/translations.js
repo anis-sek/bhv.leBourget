@@ -39,6 +39,7 @@ Nous sélectionnons avec soin les meilleurs produits de saison pour vous propose
       description: "Explorez notre carte et laissez-vous tenter par nos spécialités maison. Cliquez sur le menu pour zoomer.",
       placeholder: "Le menu PDF sera bientôt disponible",
       download: "Télécharger le menu",
+      viewMenu: "Voir la carte complète",
     },
     
     // Gallery Section
@@ -106,6 +107,7 @@ We carefully select the best seasonal products to offer you authentic and flavor
       description: "Explore our menu and let yourself be tempted by our house specialties. Click on the menu to zoom.",
       placeholder: "PDF menu coming soon",
       download: "Download menu",
+      viewMenu: "View full menu",
     },
     
     // Gallery Section
@@ -133,6 +135,61 @@ We carefully select the best seasonal products to offer you authentic and flavor
     footer: {
       rights: "All rights reserved",
       tagline: "Welcome, Hospitality, Delight",
+    },
+  },
+
+  es: {
+    nav: {
+      about: "Nosotros",
+      menu: "La Carta",
+      gallery: "Galería",
+      contact: "Contacto",
+      reserve: "Reservar",
+    },
+    hero: {
+      subtitle: "Restaurante & Bar",
+      title: "Bar de l'Hôtel de Ville",
+      slogan: "Bienvenida, Hospitalidad, Voluptuosidad",
+      cta: "Reservar por teléfono",
+    },
+    about: {
+      label: "SOBRE NOSOTROS",
+      title: "Una experiencia culinaria única",
+      description: `Situado en el corazón de Le Bourget, el Bar de l'Hôtel de Ville le da la bienvenida en un marco cálido y elegante. Nuestro apasionado equipo hace todo lo posible para ofrecerle una experiencia gastronómica inolvidable.
+
+Ya sea para un almuerzo de negocios, una cena romántica o un momento de convivencia entre amigos, nuestra refinada cocina y nuestro atento servicio le conquistarán.
+
+Seleccionamos cuidadosamente los mejores productos de temporada para ofrecerle platos auténticos y sabrosos, preparados con pasión por nuestro chef.`,
+      signature: "El equipo BHV",
+    },
+    menu: {
+      label: "NUESTRA CARTA",
+      title: "Descubra nuestras creaciones",
+      description: "Explore nuestra carta y déjese tentar por nuestras especialidades. Haga clic para ver el menú completo.",
+      placeholder: "Menú PDF disponible próximamente",
+      download: "Descargar el menú",
+      viewMenu: "Ver la carta completa",
+    },
+    gallery: {
+      label: "GALERÍA",
+      title: "Una muestra de nuestro universo",
+      description: "Descubra el cálido ambiente de nuestro establecimiento y algunas de nuestras creaciones culinarias.",
+    },
+    contact: {
+      label: "CONTACTO",
+      title: "Visítenos",
+      address: "Dirección",
+      phone: "Teléfono",
+      hours: "Horarios",
+      hoursDetail: "Lunes - Sábado: 10h - Medianoche",
+      closed: "Domingo: Cerrado",
+      reservation: "Reserva",
+      reservationText: "Todas nuestras reservas se realizan exclusivamente por teléfono. ¡No dude en llamarnos!",
+      callNow: "Llamar ahora",
+    },
+    footer: {
+      rights: "Todos los derechos reservados",
+      tagline: "Bienvenida, Hospitalidad, Voluptuosidad",
     },
   },
 };
