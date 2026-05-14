@@ -325,14 +325,19 @@
 /* ── Modal Sticky Header ── */
 .menu-modal-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 1.75rem;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.1rem 1.5rem 0.9rem;
   border-bottom: 1px solid rgba(124, 144, 112, 0.15);
   flex-shrink: 0;
-  gap: 1rem;
   background: #FAFAF8;
-  flex-wrap: wrap;
+}
+
+.menu-modal-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .menu-modal-brand {

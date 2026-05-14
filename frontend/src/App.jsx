@@ -354,11 +354,29 @@ const MenuModal = ({ onClose }) => {
       >
         {/* Sticky header */}
         <div className="menu-modal-header">
-          <div className="menu-modal-brand">
-            <span className="font-serif text-2xl font-semibold text-sage-900 tracking-tight">B · H · V</span>
-            <span className="menu-modal-subtitle">Hôtel Restaurant — Le Bourget</span>
+          {/* Row 1 : brand + close (always visible) */}
+          <div className="menu-modal-top-row">
+            <div className="menu-modal-brand">
+              <span className="font-serif text-2xl font-semibold text-sage-900 tracking-tight">B · H · V</span>
+              <span className="menu-modal-subtitle">Hôtel Restaurant — Le Bourget</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <a
+                href="/carte_bhv.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="menu-pdf-btn"
+              >
+                <Download size={15} />
+                PDF
+              </a>
+              <button onClick={onClose} className="menu-modal-close" aria-label="Fermer">
+                <X size={20} />
+              </button>
+            </div>
           </div>
 
+          {/* Row 2 : language tabs */}
           <div className="menu-lang-tabs">
             {["fr", "en", "es"].map((lang) => (
               <button
@@ -369,21 +387,6 @@ const MenuModal = ({ onClose }) => {
                 {langLabels[lang]}
               </button>
             ))}
-          </div>
-
-          <div className="flex items-center gap-2">
-            <a
-              href="/carte_bhv.pdf"
-              target="_blank"
-              rel="noreferrer"
-              className="menu-pdf-btn"
-            >
-              <Download size={15} />
-              PDF
-            </a>
-            <button onClick={onClose} className="menu-modal-close" aria-label="Fermer">
-              <X size={20} />
-            </button>
           </div>
         </div>
 
