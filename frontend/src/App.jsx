@@ -4,7 +4,6 @@ import Lenis from "@studio-freight/lenis";
 import { Phone, Menu, X, ChevronDown, MapPin, Clock } from "lucide-react";
 import { LanguageProvider, useLanguage } from "./LanguageContext";
 import { galleryImages, heroImage, aboutImage } from "./galleryImages";
-import { menuSections } from "./menuData";
 import "@/App.css";
 
 // Restaurant Info
@@ -320,108 +319,9 @@ const AboutSection = () => {
   );
 };
 
-// Menu Modal — full menu displayed like the PDF
-const MenuModal = ({ onClose }) => {
-  const { language } = useLanguage();
-  const [menuLang, setMenuLang] = useState(language);
-  const langLabels = { fr: "Français", en: "English", es: "Español" };
-
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    const onKey = (e) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [onClose]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="menu-modal-overlay"
-      onClick={onClose}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 50 }}
-        transition={{ type: "spring", damping: 30, stiffness: 280 }}
-        className="menu-modal"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Sticky header */}
-        <div className="menu-modal-header">
-          {/* Row 1 : brand + close (always visible) */}
-          <div className="menu-modal-top-row">
-            <div className="menu-modal-brand">
-              <span className="font-serif text-2xl font-semibold text-sage-900 tracking-tight">B · H · V</span>
-              <span className="menu-modal-subtitle">Hôtel Restaurant — Le Bourget</span>
-            </div>
-            <button onClick={onClose} className="menu-modal-close" aria-label="Fermer">
-              <X size={20} />
-            </button>
-          </div>
-
-          {/* Row 2 : language tabs */}
-          <div className="menu-lang-tabs">
-            {["fr", "en", "es"].map((lang) => (
-              <button
-                key={lang}
-                onClick={() => setMenuLang(lang)}
-                className={`menu-lang-tab ${menuLang === lang ? "active" : ""}`}
-              >
-                {langLabels[lang]}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Full menu content */}
-        <div className="menu-modal-body">
-          {menuSections.map((section) => (
-            <div key={section.id} className="menu-full-section">
-              <div className="menu-full-section-header">
-                <h3 className="menu-full-section-title">{section.title[menuLang]}</h3>
-                <div className="menu-full-section-line" />
-              </div>
-
-              {section.note && (
-                <p className="menu-full-note">{section.note[menuLang]}</p>
-              )}
-
-              <ul className="menu-full-items">
-                {section.items.map((item, i) => (
-                  <li key={i} className="menu-full-item">
-                    <div className="menu-full-item-info">
-                      <span className="menu-full-item-name">{item.name[menuLang]}</span>
-                      {item.desc && (
-                        <span className="menu-full-item-desc">{item.desc[menuLang]}</span>
-                      )}
-                    </div>
-                    <div className="menu-full-item-dots" />
-                    <span className="menu-full-item-price">{item.price || "—"}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          <p className="menu-full-footer">
-            60 Av. de la Division Leclerc · 93350 Le Bourget · 01 70 59 49 87 · Ouvert 7j/7
-          </p>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-// Menu Section
+// Menu Section — clic ouvre le PDF tel quel dans le navigateur
 const MenuSection = () => {
   const { t } = useLanguage();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <section id="menu" data-testid="menu-section" className="menu-section py-24 lg:py-32">
@@ -441,30 +341,26 @@ const MenuSection = () => {
           </p>
         </motion.div>
 
-        <motion.div
+        <motion.a
+          href="/carte-corriger.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="menu-cover-card"
-          onClick={() => setIsModalOpen(true)}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && setIsModalOpen(true)}
+          data-testid="menu-card"
         >
           <div className="menu-cover-inner">
             <p className="menu-cover-label">HÔTEL RESTAURANT</p>
             <h3 className="menu-cover-title">B · H · V</h3>
             <div className="menu-cover-divider" />
-            <p className="menu-cover-langs">Français · English · Español</p>
+            <p className="menu-cover-langs">Le Bourget · 93350</p>
             <span className="menu-cover-cta">{t("menu.viewMenu")}</span>
           </div>
-        </motion.div>
+        </motion.a>
       </div>
-
-      <AnimatePresence>
-        {isModalOpen && <MenuModal onClose={() => setIsModalOpen(false)} />}
-      </AnimatePresence>
     </section>
   );
 };
@@ -592,9 +488,6 @@ const ContactSection = () => {
                 </h3>
                 <p className="text-sage-600" data-testid="contact-hours-detail">
                   {t("contact.hoursDetail")}
-                </p>
-                <p className="text-sage-500" data-testid="contact-closed">
-                  {t("contact.closed")}
                 </p>
               </div>
             </div>
