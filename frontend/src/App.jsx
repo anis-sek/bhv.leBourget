@@ -537,6 +537,8 @@ const ContactSection = () => {
   );
 };
 
+import { FaTiktok } from "react-icons/fa6";
+
 // Footer Component
 const Footer = () => {
   const { t } = useLanguage();
@@ -550,17 +552,30 @@ const Footer = () => {
             <h3 className="font-serif text-2xl text-white mb-2">BHV</h3>
             <p className="text-sage-100 text-sm italic">{t("footer.tagline")}</p>
           </div>
-          
-          <div className="text-center">
+
+          <div className="flex flex-col items-center gap-3">
             <a
               href={RESTAURANT_INFO.phoneHref}
               data-testid="footer-phone"
-              className="text-sage-100 hover:text-white text-lg"
+              className="text-sage-100 hover:text-white text-lg transition-colors duration-300"
             >
               {RESTAURANT_INFO.phone}
             </a>
+            <p className="text-sage-100/60 text-xs italic text-center">
+              Retrouvez nos créations en cuisine sur TikTok
+            </p>
+            <a
+              href="https://www.tiktok.com/@bardelhoteldeville"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-tiktok"
+              aria-label="TikTok BHV Le Bourget"
+            >
+              <FaTiktok size={18} />
+              <span>@bardelhoteldeville</span>
+            </a>
           </div>
-          
+
           <div className="text-center md:text-right text-sage-100 text-sm">
             <p>© {currentYear} Bar de l'Hôtel de Ville</p>
             <p>{t("footer.rights")}</p>
